@@ -4,6 +4,8 @@ import { motion, type Variants } from "motion/react";
 import { ArrowDownRight, ArrowUpRight, Download, Sparkles } from "lucide-react";
 import { siteConfig } from "@/config/siteConfig";
 import { RotatingTitle } from "./RotatingTitle";
+import { NeuralBackground } from "./NeuralBackground";
+import { GlitchText } from "./GlitchText";
 import { openCommandPalette } from "./CommandPalette";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -32,9 +34,16 @@ export function Hero() {
       className="relative isolate overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32"
     >
       <Aurora />
-      <div aria-hidden className="absolute inset-0 -z-10 grid-bg opacity-60" />
+      <NeuralBackground className="-z-10 opacity-[0.55] [mask-image:radial-gradient(ellipse_at_50%_30%,black_35%,transparent_75%)]" />
+      <div aria-hidden className="absolute inset-0 -z-10 grid-bg opacity-40" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 scanlines opacity-40"
+      />
 
-      <div className="mx-auto w-full max-w-5xl px-6">
+      <div className="relative mx-auto w-full max-w-5xl px-6">
+        <HudCorners />
+
         <motion.div
           variants={container}
           initial="hidden"
@@ -78,19 +87,20 @@ export function Hero() {
 
           <motion.p
             variants={item}
-            className="mt-8 font-mono text-xs uppercase tracking-[0.2em] text-[var(--color-fg-subtle)]"
+            className="mt-10 font-mono text-xs uppercase tracking-[0.2em] text-[var(--color-fg-subtle)]"
           >
             <span className="text-[var(--color-accent)]">$</span> whoami
           </motion.p>
 
           <motion.h1
             variants={item}
-            className="mt-3 text-balance text-5xl font-semibold leading-[1.02] tracking-tight text-[var(--color-fg)] sm:text-6xl md:text-7xl lg:text-[5.25rem]"
+            className="mt-3 text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl md:text-7xl lg:text-[5.25rem]"
           >
-            <span className="bg-gradient-to-br from-white via-white to-white/60 bg-clip-text text-transparent">
-              {siteConfig.name}
-            </span>
-            <span className="bg-gradient-to-br from-[var(--color-accent-strong)] to-[var(--color-accent)] bg-clip-text text-transparent">
+            <GlitchText
+              text={siteConfig.name}
+              className="iridescent-text inline-block"
+            />
+            <span className="bg-gradient-to-br from-[var(--color-accent-pink)] to-[var(--color-accent-violet)] bg-clip-text text-transparent">
               .
             </span>
           </motion.h1>
@@ -122,7 +132,7 @@ export function Hero() {
           >
             <a
               href="#work"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[var(--color-fg)] px-5 py-2.5 text-sm font-medium text-[var(--color-bg)] shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_18px_50px_-18px_rgba(125,211,252,0.45)] transition-all hover:shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_20px_60px_-18px_rgba(125,211,252,0.7)]"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[var(--color-fg)] px-5 py-2.5 text-sm font-medium text-[var(--color-bg)] shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_18px_50px_-18px_rgba(167,139,250,0.55)] transition-all hover:shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_20px_60px_-18px_rgba(167,139,250,0.8)]"
             >
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               <span className="relative">View work</span>
@@ -150,6 +160,8 @@ export function Hero() {
               Résumé
             </a>
           </motion.div>
+
+          <SystemReadout />
         </motion.div>
       </div>
     </section>
@@ -158,7 +170,10 @@ export function Hero() {
 
 function Aurora() {
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 -z-20 overflow-hidden"
+    >
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -169,14 +184,79 @@ function Aurora() {
         initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1.6, ease: EASE, delay: 0.1 }}
-        className="absolute -left-40 top-40 h-[420px] w-[560px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.18),transparent_60%)] blur-3xl"
+        className="absolute -left-40 top-40 h-[420px] w-[560px] rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--color-accent-violet)_28%,transparent),transparent_60%)] blur-3xl"
       />
       <motion.div
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1.6, ease: EASE, delay: 0.2 }}
-        className="absolute -right-32 top-24 h-[380px] w-[520px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.14),transparent_60%)] blur-3xl"
+        className="absolute -right-32 top-24 h-[380px] w-[520px] rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--color-accent-pink)_20%,transparent),transparent_60%)] blur-3xl"
       />
     </div>
+  );
+}
+
+function HudCorners() {
+  const corner =
+    "pointer-events-none absolute h-5 w-5 border-[var(--color-accent)]/60";
+  return (
+    <div aria-hidden className="absolute inset-0 -mx-2 md:-mx-4">
+      <span className={`${corner} left-0 top-0 border-l border-t`} />
+      <span className={`${corner} right-0 top-0 border-r border-t`} />
+      <span className={`${corner} bottom-0 left-0 border-b border-l`} />
+      <span className={`${corner} bottom-0 right-0 border-b border-r`} />
+    </div>
+  );
+}
+
+function SystemReadout() {
+  const rows = [
+    { key: "sys", value: "online", color: "emerald" as const },
+    { key: "lat.p95", value: "<1s", color: "accent" as const },
+    { key: "stack", value: "openai · anthropic · langgraph", color: "muted" as const },
+    { key: "uptime", value: "99.98%", color: "muted" as const },
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.6, ease: EASE }}
+      className="mt-14 inline-flex max-w-full flex-col overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/70 backdrop-blur-md"
+    >
+      <div className="flex items-center justify-between gap-3 border-b border-[var(--color-border)] bg-[var(--color-bg-elevated)]/60 px-3 py-1.5">
+        <span className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-fg-subtle)]">
+          <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)] shadow-[0_0_8px_var(--color-accent)]" />
+          system readout
+        </span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-fg-subtle)]">
+          {new Date().getUTCFullYear()}.{String(new Date().getUTCMonth() + 1).padStart(2, "0")} · utc
+        </span>
+      </div>
+
+      <dl className="grid grid-cols-2 gap-x-6 gap-y-1.5 px-4 py-3 font-mono text-[12px] md:grid-cols-4">
+        {rows.map((row) => (
+          <div key={row.key} className="flex items-baseline gap-2 min-w-0">
+            <dt className="uppercase tracking-[0.18em] text-[var(--color-fg-subtle)]">
+              {row.key}
+            </dt>
+            <dd
+              className={
+                row.color === "emerald"
+                  ? "flex items-center gap-1.5 truncate text-emerald-400"
+                  : row.color === "accent"
+                    ? "truncate text-[var(--color-accent)]"
+                    : "truncate text-[var(--color-fg-muted)]"
+              }
+            >
+              {row.color === "emerald" ? (
+                <span className="h-1 w-1 animate-pulse rounded-full bg-emerald-400" />
+              ) : null}
+              {row.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </motion.div>
   );
 }

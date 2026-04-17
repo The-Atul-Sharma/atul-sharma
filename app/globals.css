@@ -11,6 +11,8 @@
   --color-fg-subtle: #71717a;
   --color-accent: #7dd3fc;
   --color-accent-strong: #38bdf8;
+  --color-accent-violet: #a78bfa;
+  --color-accent-pink: #f0abfc;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular,
@@ -72,6 +74,47 @@ body {
     black 35%,
     transparent 75%
   );
+}
+
+.scanlines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    color-mix(in oklab, var(--color-fg) 3%, transparent) 2px,
+    color-mix(in oklab, var(--color-fg) 3%, transparent) 3px
+  );
+}
+
+.iridescent-text {
+  background-image: linear-gradient(
+    120deg,
+    var(--color-accent-strong) 0%,
+    var(--color-accent) 35%,
+    var(--color-accent-violet) 65%,
+    var(--color-accent-pink) 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: iridescent 8s ease-in-out infinite;
+}
+
+@keyframes iridescent {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(1turn);
+  }
 }
 
 @keyframes shimmer {

@@ -48,11 +48,19 @@ function ProjectCard({
         delay: index * 0.06,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="h-full"
+      className="relative h-full"
     >
-    <Spotlight className="h-full rounded-xl">
+    {project.featured ? (
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -inset-px overflow-hidden rounded-xl"
+      >
+        <div className="absolute left-1/2 top-1/2 aspect-square w-[150%] -translate-x-1/2 -translate-y-1/2 bg-[conic-gradient(from_0deg,transparent_0deg,var(--color-accent-strong)_30deg,var(--color-accent-violet)_80deg,var(--color-accent-pink)_130deg,transparent_180deg,transparent_360deg)] opacity-70 motion-safe:animate-[spin-slow_9s_linear_infinite]" />
+      </div>
+    ) : null}
+    <Spotlight className="relative h-full rounded-xl">
     <article
-      className="relative flex h-full flex-col overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-border-strong)] hover:shadow-[0_30px_60px_-30px_rgba(125,211,252,0.25)]"
+      className="relative flex h-full flex-col overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-border-strong)] hover:shadow-[0_30px_60px_-30px_rgba(167,139,250,0.3)]"
     >
       <div className="relative flex items-center justify-between">
         <p className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-fg-subtle)]">
