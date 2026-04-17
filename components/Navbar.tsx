@@ -142,12 +142,6 @@ export function Navbar() {
               ))}
               <div className="mt-2 flex gap-2 border-t border-[var(--color-border)] pt-3">
                 <a
-                  href={siteConfig.resumeUrl}
-                  className="flex-1 rounded-md border border-[var(--color-border)] px-3 py-2 text-center text-sm text-[var(--color-fg)]"
-                >
-                  Résumé
-                </a>
-                <a
                   href="#contact"
                   onClick={() => setOpen(false)}
                   className="flex-1 rounded-md bg-[var(--color-fg)] px-3 py-2 text-center text-sm text-[var(--color-bg)]"

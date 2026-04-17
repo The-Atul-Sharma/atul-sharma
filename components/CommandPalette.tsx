@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import {
   ArrowRight,
@@ -87,13 +81,6 @@ export function CommandPalette() {
         icon: <ArrowRight size={14} />,
       })),
       {
-        id: "resume",
-        kind: "action",
-        label: "Download résumé",
-        hint: siteConfig.resumeUrl,
-        icon: <FileText size={14} />,
-      },
-      {
         id: "mail",
         kind: "action",
         label: `Email ${siteConfig.email}`,
@@ -138,11 +125,6 @@ export function CommandPalette() {
 
   const runNavItem = useCallback(
     (item: NavItem) => {
-      if (item.id === "resume") {
-        window.open(siteConfig.resumeUrl, "_blank", "noopener,noreferrer");
-        close();
-        return;
-      }
       if (item.id === "mail") {
         window.location.href = `mailto:${siteConfig.email}`;
         close();
@@ -307,7 +289,8 @@ export function CommandPalette() {
                 </span>
               </div>
               <span className="inline-flex items-center gap-1.5">
-                <User size={11} /> {siteConfig.name.toLowerCase().replace(" ", "_")}
+                <User size={11} />{" "}
+                {siteConfig.name.toLowerCase().replace(" ", "_")}
               </span>
             </div>
           </motion.div>

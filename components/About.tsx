@@ -8,10 +8,7 @@ import { siteConfig } from "@/config/siteConfig";
 export function About() {
   return (
     <Section id="journey">
-      <SectionHeading
-        command="cat about.md"
-        title="A short introduction."
-      />
+      <SectionHeading command="cat about.md" title="A short introduction." />
 
       <motion.div
         initial={{ opacity: 0, y: 16 }}
@@ -22,12 +19,6 @@ export function About() {
       >
         <div className="space-y-5 text-pretty text-lg leading-relaxed text-[var(--color-fg-muted)]">
           <p>{siteConfig.bio.long}</p>
-          <p>
-            Most of my recent work has been at the seam between product and
-            platform — building design systems, shipping internal tools, and
-            making the stack boring enough that teams can move fast without
-            breaking trust.
-          </p>
         </div>
 
         <aside className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5">
@@ -56,13 +47,7 @@ export function About() {
   );
 }
 
-function Row({
-  label,
-  value,
-}: {
-  label: string;
-  value: React.ReactNode;
-}) {
+function Row({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div className="flex items-start justify-between gap-4 border-b border-dashed border-[var(--color-border)] pb-3 last:border-none last:pb-0">
       <dt className="font-mono text-xs uppercase tracking-wider text-[var(--color-fg-subtle)]">

@@ -59,7 +59,6 @@ export type SiteConfig = {
   location: string;
   availability: string;
   email: string;
-  resumeUrl: string;
   url: string;
   locale: string;
   bio: {
@@ -67,7 +66,6 @@ export type SiteConfig = {
     long: string;
   };
   nav: NavItem[];
-  stats: StatItem[];
   experience: ExperienceItem[];
   projects: ProjectItem[];
   skills: SkillGroup[];
@@ -85,168 +83,192 @@ export type SiteConfig = {
 export const siteConfig: SiteConfig = {
   name: "Atul Sharma",
   initials: "AS",
-  title: "Senior Software Engineer · AI",
+  title: "Senior Software Engineer",
   roles: [
     "Senior Software Engineer",
     "AI Product Engineer",
-    "Full-stack · LLM apps",
-    "Design systems · DX",
+    "Frontend",
+    "Design Systems",
   ],
+
   tagline:
-    "I build AI-native products and calm, performant web platforms that real teams rely on every day.",
-  location: "Bengaluru, India",
-  availability: "Open to senior & staff roles",
-  email: "hello@atulsharma.dev",
-  resumeUrl: "/resume.pdf",
-  url: "https://atulsharma.dev",
+    "Senior software engineer building AI-native products, scalable frontend architectures, and high-performance web platforms.",
+
+  location: "India / Remote",
+  availability: "Open to senior roles or Projects",
+
+  email: "theatsharma@gmail.com",
+
+  url: "https://the-atul-sharma.github.io",
   locale: "en_US",
 
   bio: {
     short:
-      "Senior software engineer building AI-native products, design systems, and developer tooling.",
-    long: "I'm a senior software engineer with 7+ years of experience building product-grade web platforms — and, for the last two years, AI-native products on top of LLMs. I care about the edges: the small details that make a product feel fast, honest, and trustworthy. My work sits where design systems, performance, and applied AI meet.",
+      "Senior software engineer building AI-native products, design systems, and developer platforms.",
+
+    long: "I'm a senior software engineer with 8+ years of experience building scalable web applications and AI-powered products. I specialize in React, Next.js, and TypeScript, with expertise in micro-frontends, design systems, and performance optimization. I’ve worked on enterprise platforms serving global users, building reusable UI libraries. My focus is on creating fast, reliable, and production-ready systems that scale across teams and products.",
   },
 
   nav: [
     { label: "Journey", href: "#journey" },
-    { label: "Work", href: "#work" },
+    { label: "Experience", href: "#experience" },
     { label: "Projects", href: "#projects" },
     { label: "Skills", href: "#skills" },
-    { label: "Ask", href: "#ask" },
+    { label: "FAQ", href: "#ask" },
     { label: "Contact", href: "#contact" },
-  ],
-
-  stats: [
-    { value: "7+", label: "Years shipping" },
-    { value: "30+", label: "Production launches" },
-    { value: "80M", label: "Events/month served" },
-    { value: "12", label: "LLM apps in prod" },
   ],
 
   experience: [
     {
-      year: "2024 — Present",
-      role: "Senior Software Engineer, AI Platform",
-      company: "Lumen Labs",
-      location: "Remote",
-      description:
-        "Leading the AI platform team. Shipped an agentic workflow engine, a streaming RAG layer over the company's docs, and a typed tool-calling framework the rest of the engineering org builds on.",
-      stack: [
-        "Next.js",
-        "TypeScript",
-        "OpenAI",
-        "Anthropic",
-        "LangGraph",
-        "pgvector",
-        "Redis",
-      ],
-      impact: [
-        "Cut median AI response latency from 4.1s to 900ms with streaming + speculative tool calls",
-        "Shipped an eval harness that gates every prompt change; regressions caught before merge",
-        "Designed the tool-calling SDK adopted by 4 product teams",
-      ],
-    },
-    {
-      year: "2023 — 2024",
+      year: "2025 — Present",
       role: "Senior Software Engineer",
-      company: "Lumen Labs",
-      location: "Remote",
+      company: "Yallo.co : Alshaya Group",
+      location: "Remote (Bengaluru, India)",
       description:
-        "Rebuilt the core web app on the App Router, introduced a typed design system, and cut p75 page loads by more than half.",
-      stack: ["Next.js", "TypeScript", "PostgreSQL", "tRPC", "Tailwind"],
+        "Building scalable frontend architecture and enterprise retail systems for Alshaya Group, focusing on performance, multi-brand platforms, and micro-frontend architecture.",
+      stack: [
+        "React",
+        "TypeScript",
+        "Micro-frontends",
+        "MUI",
+        "SCSS",
+        "Storybook",
+      ],
       impact: [
-        "Reduced p75 TTI from 3.4s to 1.2s across the core app",
-        "Shipped a typed design system adopted by 4 product teams",
-        "Mentored 5 engineers through senior promotion",
+        "Developed and scaled a reusable UI component library, improving consistency and accelerating development across multiple applications",
+        "Led performance optimizations across the platform, improving load times and overall user experience",
+        "Architected and implemented a micro-frontend system enabling independent deployments and scalable team workflows",
+        "Designed a theming architecture supporting multiple brands, ensuring consistent UI with flexible customization",
+        "Built and enhanced merchandising systems used by retail stores for inventory management and demand forecasting",
       ],
     },
+
     {
-      year: "2021 — 2023",
-      role: "Software Engineer II",
-      company: "Northwind",
-      location: "Bengaluru, IN",
+      year: "2021 — 2025",
+      role: "Senior Software Engineer",
+      company: "Arts Consolidated",
+      location: "Remote (Copenhagen)",
       description:
-        "Owned billing and subscriptions end-to-end. Built the internal experiment platform and migrated the data layer to a typed, cache-aware client.",
-      stack: ["React", "Node.js", "GraphQL", "Stripe", "Redis"],
+        "Led frontend development for Operabase and CueTV — global platforms in the performing arts space.",
+      stack: [
+        "React",
+        "Next.js",
+        "Redux",
+        "Stripe",
+        "Chargebee",
+        "VWO",
+        "Lokalize",
+      ],
       impact: [
-        "Grew paid conversion by 18% through checkout redesign",
-        "Powered 120+ experiments in the first year",
+        "Led development of flagship platforms Operabase and CueTV",
+        "Architected a secure paywall system using FingerprintJS, preventing unauthorized access and strengthening subscription enforcement",
+        "Designed and implemented analytics pipelines integrating Google Analytics, improving decision-making efficiency",
+        "Integrated Stripe and Chargebee for secure subscription and payment workflows",
+        "Improved Core Web Vitals (LCP, FID, CLS) through optimization, lazy loading, and code-splitting",
+        "Drove product improvements using A/B testing and feature flags via VWO",
       ],
     },
+
     {
-      year: "2019 — 2021",
+      year: "2020 — 2021",
+      role: "Senior Software Engineer",
+      company: "Belong.co",
+      location: "Bengaluru, India",
+      description:
+        "Built analytics systems and improved hiring platform integrations.",
+      stack: ["React", "Redux", "Node.js", "Express", "DynamoDB"],
+      impact: [
+        "Developed analytics dashboards for real-time recruitment insights",
+        "Integrated layer on top of career site with ATS, improving candidate conversion rates",
+      ],
+    },
+
+    {
+      year: "2018 — 2020",
       role: "Software Engineer",
-      company: "Tessera",
-      location: "Hyderabad, IN",
+      company: "Belong.co",
+      location: "Bengaluru, India",
       description:
-        "Shipped the first version of the analytics dashboard and internal tooling used by the success team. First engineer on the frontend platform.",
-      stack: ["React", "TypeScript", "D3", "Express"],
+        "Focused on frontend architecture and reusable component systems.",
+      stack: ["React", "Redux", "Node.js", "Webpack", "Sass", "Highcharts"],
+      impact: [
+        "Built reusable UI component libraries, improving development speed and consistency",
+        "Delivered key ATS features improving recruiter productivity",
+        "Integrated CRM with talent pools for better candidate targeting",
+      ],
     },
+
     {
-      year: "2018 — 2019",
-      role: "Founding Engineer",
-      company: "Kappa (acquired)",
-      location: "Remote",
+      year: "2017 — 2018",
+      role: "Software Engineer",
+      company: "Advanced Structures India",
+      location: "Bengaluru, India",
       description:
-        "Built the MVP, onboarded the first 2,000 users, and set the engineering bar for the team that followed.",
-      stack: ["React", "Firebase", "Node.js"],
+        "Built complex data visualization tools for engineering datasets.",
+      stack: ["React", "Redux", "AngularJS", "Plotly"],
+      impact: [
+        "Developed visualization tools for noise and vibration analysis (linear, log, dB, 3D, heatmaps)",
+        "Handled high-frequency data efficiently for large-scale datasets",
+        "Enabled comparison across vehicle models and benchmarking scenarios",
+      ],
     },
   ],
 
   projects: [
     {
-      year: "2025",
-      title: "Orbit",
+      year: "2026",
+      title: "Knowledgebase AI",
       description:
-        "An agentic research copilot that plans, browses, and writes with citations. Built around a typed tool-calling graph and a streaming UI that renders partial reasoning as it lands.",
-      stack: ["Next.js", "TypeScript", "LangGraph", "Anthropic", "pgvector"],
+        "AI-powered chatbot platform that answers product questions using Retrieval-Augmented Generation (RAG). Users can upload content or scrape websites to create a custom knowledge base and embed a fully customizable chatbot on their site.",
+      stack: [
+        "Next.js",
+        "TypeScript",
+        "LangChain",
+        "Supabase",
+        "pgvector",
+        "OpenAI",
+        "Gemini",
+        "Ollama",
+      ],
       impact: [
-        "Sub-second first token on 95% of queries",
-        "Eval suite of 420 prompts, regressions blocked in CI",
+        "Built a multi-tenant RAG system with isolated user knowledge bases",
+        "Enabled semantic search using vector embeddings for accurate responses",
+        "Supported multiple LLM providers (OpenAI, Gemini, Ollama) with per-user configuration",
+        "Developed embeddable chatbot widget with full UI and prompt customization",
+        "Implemented website scraping + content ingestion pipeline",
       ],
       links: {
-        live: "https://orbit.example.com",
-        caseStudy: "https://atulsharma.dev/writing/orbit",
+        live: "https://knowledge-base-ai-alpha.vercel.app/",
+        repo: "https://github.com/The-Atul-Sharma/KnowledgeBase-ai",
       },
       featured: true,
     },
     {
       year: "2025",
-      title: "Atlas",
+      title: "Enterprise Retail Platform",
       description:
-        "An opinionated command palette for SaaS apps. Keyboard-first, accessible by default, and framework-agnostic — now with a pluggable AI-action layer.",
-      stack: ["TypeScript", "React", "Radix", "Zustand"],
+        "Built enterprise retail systems handling demand forecasting, inventory planning, and store replenishment across distribution centers and global store networks.",
+      stack: ["React", "TypeScript", "Micro-frontends", "MUI", "SCSS"],
       impact: [
-        "1.8k GitHub stars in the first month",
-        "Adopted by 30+ production teams",
+        "Architected micro-frontend system for scalable deployments",
+        "Built reusable UI library and multi-brand theming system",
+        "Improved performance across high-traffic retail workflows",
       ],
-      links: {
-        live: "https://atlas.example.com",
-        repo: "https://github.com/example/atlas",
-      },
-      featured: true,
+      links: {},
+      featured: false,
     },
     {
-      year: "2024",
-      title: "Signal",
+      year: "2021 - 2025",
+      title: "Global Performing Arts Platform",
       description:
-        "A lightweight analytics layer that renders in under 30ms. Built for teams that want truth without the bloat.",
-      stack: ["Next.js", "ClickHouse", "Edge Runtime"],
-      impact: ["Serves 80M events/month on a $40/mo stack"],
-      links: {
-        live: "https://signal.example.com",
-        caseStudy: "https://atulsharma.dev/writing/signal",
-      },
-    },
-    {
-      year: "2023",
-      title: "Quill",
-      description:
-        "A collaborative writing surface with offline sync, CRDT-based history, and an inline AI rewriter that respects your voice.",
-      stack: ["React", "Yjs", "IndexedDB", "OpenAI"],
-      links: {
-        repo: "https://github.com/example/quill",
-      },
+        "Subscription-based platform for the performing arts industry with global reach, payments, and analytics systems.",
+      stack: ["React", "TypeScript", "Stripe", "Chargebee", "VWO", "Lokalize"],
+      impact: [
+        "Built secure paywall using FingerprintJS",
+        "Integrated Stripe and Chargebee for subscriptions",
+        "Improved Core Web Vitals and SEO performance",
+        "Built analytics pipelines using Google Analytics and Tag Manager",
+      ],
     },
   ],
 
@@ -254,71 +276,40 @@ export const siteConfig: SiteConfig = {
     {
       label: "AI / LLM",
       items: [
+        "Cursor",
+        "Claude",
+        "Gemini",
+        "Ollama",
         "OpenAI",
-        "Anthropic",
-        "LangGraph",
-        "Vercel AI SDK",
+        "LangChain",
         "RAG",
-        "Tool calling",
-        "Evals",
-        "pgvector",
+        "Prompt Engineering",
       ],
-    },
-    {
-      label: "Languages",
-      items: ["TypeScript", "JavaScript", "Go", "Python", "SQL"],
     },
     {
       label: "Frontend",
-      items: [
-        "React",
-        "Next.js",
-        "Tailwind CSS",
-        "Framer Motion",
-        "Radix UI",
-        "Zustand",
-      ],
+      items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Material UI"],
     },
     {
       label: "Backend",
-      items: ["Node.js", "tRPC", "GraphQL", "PostgreSQL", "Redis", "Prisma"],
+      items: ["Node.js", "MongoDB", "Express.js", "GraphQL"],
     },
     {
       label: "Platform",
-      items: ["Vercel", "AWS", "Docker", "GitHub Actions", "Cloudflare"],
-    },
-    {
-      label: "Practice",
-      items: [
-        "Design systems",
-        "Web performance",
-        "Accessibility",
-        "Prompt engineering",
-        "Mentoring",
-      ],
+      items: ["Vercel", "Git", "GitHub", "Bitbucket"],
     },
   ],
 
   prompts: [
     {
-      question: "What do you actually build?",
+      question: "What do you build?",
       answer:
-        "AI-native product surfaces on top of LLMs — agentic workflows, streaming RAG, and the boring-but-critical stuff around them: evals, guardrails, tool-calling frameworks, and observability. And the calm, fast web platforms underneath.",
+        "AI-powered product features, scalable frontend systems, and performance-focused web applications.",
     },
     {
-      question: "What's your stack in 2025?",
+      question: "What is your core strength?",
       answer:
-        "Next.js + TypeScript on the frontend. Node, Postgres, and Redis on the server. Anthropic and OpenAI for model calls, LangGraph for agent orchestration, pgvector for retrieval, and the Vercel AI SDK to stream it all back to the UI without tears.",
-    },
-    {
-      question: "How do you approach AI features?",
-      answer:
-        "Start with evals, not prompts. Ship the thinnest vertical slice that's actually useful. Stream everything — tokens, tool calls, reasoning. Measure latency, cost, and trust, in that order. Never ship a feature you can't roll back behind a flag in one click.",
-    },
-    {
-      question: "What kind of role are you looking for?",
-      answer:
-        "Senior or staff roles where AI is part of the product, not a sidecar. Small, high-trust teams. Bonus if the work involves design systems, platform engineering, or getting models to behave in production.",
+        "Building reliable, scalable, and fast systems that work well in production.",
     },
     {
       question: "How can we work together?",
@@ -330,43 +321,38 @@ export const siteConfig: SiteConfig = {
   socials: [
     {
       label: "GitHub",
-      href: "https://github.com/atulsharma",
-      handle: "@atulsharma",
+      href: "https://github.com/the-atul-sharma",
+      handle: "@the-atul-sharma",
     },
     {
       label: "LinkedIn",
-      href: "https://linkedin.com/in/atulsharma",
-      handle: "in/atulsharma",
+      href: "https://www.linkedin.com/in/theatsharma/",
+      handle: "@theatsharma",
     },
     {
       label: "X",
-      href: "https://x.com/atulsharma",
-      handle: "@atulsharma",
+      href: "https://x.com/theatsharma",
+      handle: "@theatsharma",
     },
     {
       label: "Email",
-      href: "mailto:hello@atulsharma.dev",
-      handle: "hello@atulsharma.dev",
+      href: "mailto:theatsharma@gmail.com",
     },
   ],
 
   seo: {
-    title: "Atul Sharma — Senior Software Engineer · AI",
+    title: "Atul Sharma | Senior Software Engineer (AI, React, Next.js)",
     description:
-      "Portfolio of Atul Sharma, a senior software engineer building AI-native products, design systems, and developer tooling on top of modern web platforms.",
+      "Atul Sharma is a senior software engineer specializing in AI applications, React, Next.js, and scalable frontend architecture.",
     keywords: [
       "Atul Sharma",
       "Senior Software Engineer",
       "AI Engineer",
-      "LLM apps",
-      "RAG",
-      "Next.js developer",
-      "TypeScript",
-      "React",
-      "Design systems",
-      "Portfolio",
+      "Next.js Developer",
+      "React Developer",
+      "LLM Applications",
     ],
     ogImage: "/og.png",
-    twitterHandle: "@atulsharma",
+    twitterHandle: "@theatsharma",
   },
 };

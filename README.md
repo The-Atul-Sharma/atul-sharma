@@ -36,7 +36,7 @@ modern, recruiter-friendly layout.
 │   └── JsonLd.tsx          # Person + WebSite + CreativeWork schemas
 ├── config/
 │   └── siteConfig.ts       # Single source of truth for content
-└── public/                 # Static assets (resume.pdf, og.png, favicon, …)
+└── public/                 # Static assets (og.png, favicon, …)
 ```
 
 ## The content lives in one place
@@ -49,9 +49,9 @@ Edit that file and the whole site updates:
 
 ```ts
 import { siteConfig } from "@/config/siteConfig";
-siteConfig.name;              // "Atul Sharma"
-siteConfig.experience[0];     // most recent role
-siteConfig.projects;          // array of ProjectItem
+siteConfig.name; // "Atul Sharma"
+siteConfig.experience[0]; // most recent role
+siteConfig.projects; // array of ProjectItem
 ```
 
 See `config/siteConfig.ts` for the full type definitions.
@@ -85,7 +85,7 @@ Open [http://localhost:3000](http://localhost:3000).
 Then:
 
 1. Open `config/siteConfig.ts` and replace the sample content with yours.
-2. Drop `resume.pdf` and `og.png` into `public/`.
+2. Drop `og.png` into `public/`.
 3. Update `siteConfig.url` to your production URL.
 
 Build and preview a production bundle:

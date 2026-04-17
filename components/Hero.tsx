@@ -73,7 +73,9 @@ export function Hero() {
                 size={11}
                 className="text-[var(--color-accent)] transition-transform group-hover:rotate-12"
               />
-              <span className="uppercase tracking-[0.2em]">Ask me anything</span>
+              <span className="uppercase tracking-[0.2em]">
+                Ask me anything
+              </span>
               <span className="ml-1 inline-flex items-center gap-0.5 text-[10px] text-[var(--color-fg-subtle)]">
                 <kbd className="rounded border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-1">
                   ⌘
@@ -145,14 +147,6 @@ export function Hero() {
                 className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               />
             </a>
-            <a
-              href={siteConfig.resumeUrl}
-              className="inline-flex items-center gap-2 rounded-full px-3 py-2.5 text-sm text-[var(--color-fg-muted)] transition-colors hover:text-[var(--color-fg)]"
-              download
-            >
-              <Download size={14} />
-              Résumé
-            </a>
           </motion.div>
 
           <SystemReadout />
@@ -200,11 +194,16 @@ function SystemReadout() {
   const rows = [
     { key: "status", value: "open to work", color: "emerald" as const },
     { key: "loc", value: loc, color: "accent" as const },
-    { key: "focus", value: "ai · llm · web", color: "muted" as const },
-    { key: "stack", value: "openai · anthropic · langgraph", color: "muted" as const },
+    { key: "focus", value: "frontend · ai · web", color: "muted" as const },
+    {
+      key: "stack",
+      value: "react · nextjs · micro-frontends",
+      color: "muted" as const,
+    },
   ];
 
   const [stamp, setStamp] = useState<string | null>(null);
+
   useEffect(() => {
     const d = new Date();
     setStamp(
