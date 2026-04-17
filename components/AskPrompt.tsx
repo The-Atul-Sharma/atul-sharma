@@ -31,13 +31,7 @@ export function AskPrompt() {
       <SectionHeading
         command="ask ./me"
         title="Ask me anything."
-        description={
-          <>
-            A small, live prompt with pre-written answers to the questions I
-            get most. Same vibe as the ⌘K palette — just inline. No model calls,
-            no hallucinations.
-          </>
-        }
+        description="A small, live prompt for the questions I get most. Pick one below or open the ⌘K palette to search."
       />
 
       <div className="overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]">
@@ -95,16 +89,13 @@ export function AskPrompt() {
                     ) : null}
                   </p>
                   {done ? (
-                    <div className="mt-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-fg-subtle)]">
-                      <button
-                        type="button"
-                        onClick={reset}
-                        className="hover:text-[var(--color-fg-muted)]"
-                      >
-                        ← new question
-                      </button>
-                      <span>· pre-written answer</span>
-                    </div>
+                    <button
+                      type="button"
+                      onClick={reset}
+                      className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-fg-subtle)] hover:text-[var(--color-fg-muted)]"
+                    >
+                      ← new question
+                    </button>
                   ) : (
                     <button
                       type="button"

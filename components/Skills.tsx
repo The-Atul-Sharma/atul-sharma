@@ -26,16 +26,17 @@ export function Skills() {
               delay: idx * 0.05,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5"
+            className="group/skill rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-colors hover:border-[var(--color-border-strong)]"
           >
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-fg-subtle)]">
-              &gt; {group.label.toLowerCase()}
+            <p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-fg-subtle)]">
+              <span className="h-1 w-1 rounded-full bg-[var(--color-accent)] shadow-[0_0_6px_var(--color-accent)]" />
+              <span>&gt; {group.label.toLowerCase()}</span>
             </p>
             <ul className="mt-4 flex flex-wrap gap-2">
               {group.items.map((skill) => (
                 <li
                   key={skill}
-                  className="rounded-md border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-2.5 py-1 text-[13px] text-[var(--color-fg)]"
+                  className="rounded-md border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-2.5 py-1 text-[13px] text-[var(--color-fg)] transition-colors hover:border-[color:color-mix(in_oklab,var(--color-accent)_50%,transparent)] hover:text-[var(--color-accent)]"
                 >
                   {skill}
                 </li>

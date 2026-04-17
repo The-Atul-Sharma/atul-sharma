@@ -456,7 +456,7 @@ function AnswerView({
           <span className="ml-0.5 inline-block h-[1em] w-[7px] translate-y-[2px] animate-pulse bg-[var(--color-accent)]" />
         ) : null}
       </p>
-      <div className="mt-5 flex items-center justify-between">
+      <div className="mt-5">
         <button
           type="button"
           onClick={onBack}
@@ -464,9 +464,6 @@ function AnswerView({
         >
           ← back to questions
         </button>
-        <span className="font-mono text-[11px] text-[var(--color-fg-subtle)]">
-          pre-written · no model call
-        </span>
       </div>
     </div>
   );

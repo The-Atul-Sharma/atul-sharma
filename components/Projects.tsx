@@ -48,17 +48,23 @@ function ProjectCard({
         delay: index * 0.06,
         ease: [0.22, 1, 0.36, 1],
       }}
+      className="h-full"
     >
     <Spotlight className="h-full rounded-xl">
     <article
-      className="relative flex h-full flex-col overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-colors hover:border-[var(--color-border-strong)]"
+      className="relative flex h-full flex-col overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-border-strong)] hover:shadow-[0_30px_60px_-30px_rgba(125,211,252,0.25)]"
     >
       <div className="relative flex items-center justify-between">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-fg-subtle)]">
-          {project.year}
+        <p className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-fg-subtle)]">
+          <span>{project.year}</span>
           {project.featured ? (
-            <span className="ml-2 rounded-full border border-[var(--color-border-strong)] px-1.5 py-0.5 text-[10px] text-[var(--color-accent)]">
-              featured
+            <span className="relative inline-flex items-center gap-1 overflow-hidden rounded-full border border-[var(--color-border-strong)] bg-[var(--color-bg-elevated)] px-1.5 py-0.5 text-[10px] text-[var(--color-accent)]">
+              <span
+                aria-hidden
+                className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-[color:color-mix(in_oklab,var(--color-accent)_35%,transparent)] to-transparent motion-safe:animate-[shimmer_2.8s_ease-in-out_infinite]"
+              />
+              <span className="relative h-1 w-1 rounded-full bg-[var(--color-accent)] shadow-[0_0_8px_var(--color-accent)]" />
+              <span className="relative">featured</span>
             </span>
           ) : null}
         </p>

@@ -1,11 +1,20 @@
 "use client";
 
-import { motion } from "motion/react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { Section } from "./Section";
 import { SectionHeading } from "./SectionHeading";
 import { siteConfig } from "@/config/siteConfig";
 
 export function Experience() {
+  const containerRef = useRef<HTMLOListElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 80%", "end 40%"],
+  });
+
+  const beamHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   return (
     <Section id="work">
       <SectionHeading
@@ -14,7 +23,20 @@ export function Experience() {
         description="A timeline of the places I've worked and the problems I've worked on. Most recent first."
       />
 
-      <ol className="relative border-l border-[var(--color-border)] pl-6 md:pl-10">
+      <ol
+        ref={containerRef}
+        className="relative pl-6 md:pl-10"
+      >
+        <div
+          aria-hidden
+          className="absolute left-0 top-0 h-full w-px bg-[var(--color-border)]"
+        />
+        <motion.div
+          aria-hidden
+          style={{ height: beamHeight }}
+          className="absolute left-0 top-0 w-px bg-gradient-to-b from-[var(--color-accent-strong)] via-[var(--color-accent)] to-transparent shadow-[0_0_12px_color-mix(in_oklab,var(--color-accent)_50%,transparent)]"
+        />
+
         {siteConfig.experience.map((item, idx) => (
           <motion.li
             key={`${item.company}-${item.year}`}
@@ -30,9 +52,10 @@ export function Experience() {
           >
             <span
               aria-hidden
-              className="absolute -left-[33px] top-1.5 flex h-4 w-4 items-center justify-center md:-left-[49px]"
+              className="absolute -left-[29px] top-1.5 flex h-4 w-4 items-center justify-center md:-left-[45px]"
             >
-              <span className="h-2 w-2 rounded-full bg-[var(--color-accent)] ring-4 ring-[var(--color-bg)]" />
+              <span className="absolute h-4 w-4 rounded-full bg-[var(--color-accent)]/20 blur-[6px] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <span className="relative h-2 w-2 rounded-full bg-[var(--color-accent)] ring-4 ring-[var(--color-bg)]" />
             </span>
 
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--color-fg-subtle)]">
