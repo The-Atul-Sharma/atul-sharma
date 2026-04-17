@@ -98,7 +98,7 @@ export const siteConfig: SiteConfig = {
 
   email: "theatsharma@gmail.com",
 
-  url: "https://the-atul-sharma.github.io",
+  url: "https://atul-sharma.vercel.app/",
   locale: "en_US",
 
   bio: {
