@@ -36,7 +36,7 @@ modern, recruiter-friendly layout.
 │   └── JsonLd.tsx          # Person + WebSite + CreativeWork schemas
 ├── config/
 │   └── siteConfig.ts       # Single source of truth for content
-└── public/                 # Static assets (og.png, favicon, …)
+└── public/                 # Static assets (resume.pdf, …)
 ```
 
 ## The content lives in one place
@@ -70,8 +70,11 @@ See `config/siteConfig.ts` for the full type definitions.
 - Semantic HTML throughout: a single `<h1>` in the hero, `<h2>` per section,
   `<nav>`, `<main>`, `<article>`, `<footer>`, `<ol>` for the timeline.
 
-Add an OG image at `public/og.png` (1200×630). The path is already wired via
-`siteConfig.seo.ogImage`.
+The Open Graph / Twitter card image is generated dynamically at build time from
+`app/opengraph-image.tsx` (reused by `app/twitter-image.tsx`). It reads from
+`siteConfig`, so updating your name, role, or availability automatically
+refreshes the social preview. Same for the favicon (`app/icon.tsx`) and Apple
+touch icon (`app/apple-icon.tsx`).
 
 ## Getting started
 
@@ -85,8 +88,8 @@ Open [http://localhost:3000](http://localhost:3000).
 Then:
 
 1. Open `config/siteConfig.ts` and replace the sample content with yours.
-2. Drop `og.png` into `public/`.
-3. Update `siteConfig.url` to your production URL.
+2. Update `siteConfig.url` to your production URL.
+3. Drop your `resume.pdf` into `public/` (or change `siteConfig.resumeUrl`).
 
 Build and preview a production bundle:
 

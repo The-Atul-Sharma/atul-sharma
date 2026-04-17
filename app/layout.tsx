@@ -36,20 +36,11 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: siteConfig.seo.title,
     description: siteConfig.seo.description,
-    images: [
-      {
-        url: siteConfig.seo.ogImage,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.seo.title,
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.seo.title,
     description: siteConfig.seo.description,
-    images: [siteConfig.seo.ogImage],
     creator: siteConfig.seo.twitterHandle,
   },
   robots: {

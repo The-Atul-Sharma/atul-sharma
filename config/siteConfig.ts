@@ -75,7 +75,6 @@ export type SiteConfig = {
     title: string;
     description: string;
     keywords: string[];
-    ogImage: string;
     twitterHandle?: string;
   };
 };
@@ -352,7 +351,6 @@ export const siteConfig: SiteConfig = {
       "React Developer",
       "LLM Applications",
     ],
-    ogImage: "/og.png",
     twitterHandle: "@theatsharma",
   },
 };
