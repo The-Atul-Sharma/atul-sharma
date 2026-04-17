@@ -7,7 +7,7 @@ import { siteConfig } from "@/config/siteConfig";
 
 export function About() {
   return (
-    <Section id="journey">
+    <Section id="intro">
       <SectionHeading command="cat about.md" title="A short introduction." />
 
       <motion.div

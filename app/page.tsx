@@ -21,7 +21,7 @@ export default function Home() {
       <SideRail />
       <main>
         <Hero />
-        <SectionDivider chapter="01" label="Journey" />
+        <SectionDivider chapter="01" label="Intro" />
         <About />
         <SectionDivider chapter="02" label="Work" />
         <Experience />

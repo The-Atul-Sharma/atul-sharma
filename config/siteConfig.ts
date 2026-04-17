@@ -109,7 +109,7 @@ export const siteConfig: SiteConfig = {
   },
 
   nav: [
-    { label: "Journey", href: "#journey" },
+    { label: "Intro", href: "#intro" },
     { label: "Experience", href: "#experience" },
     { label: "Projects", href: "#projects" },
     { label: "Skills", href: "#skills" },

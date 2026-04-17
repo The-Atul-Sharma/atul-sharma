@@ -127,7 +127,7 @@ export function Hero() {
             className="mt-10 flex flex-wrap items-center gap-3"
           >
             <a
-              href="#work"
+              href="#experience"
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[var(--color-fg)] px-5 py-2.5 text-sm font-medium text-[var(--color-bg)] shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_18px_50px_-18px_rgba(167,139,250,0.55)] transition-all hover:shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_20px_60px_-18px_rgba(167,139,250,0.8)]"
             >
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full" />

@@ -16,17 +16,14 @@ export function Experience() {
   const beamHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <Section id="work">
+    <Section id="experience">
       <SectionHeading
         command="git log --experience"
         title="The journey so far."
         description="A timeline of the places I've worked and the problems I've worked on. Most recent first."
       />
 
-      <ol
-        ref={containerRef}
-        className="relative pl-6 md:pl-10"
-      >
+      <ol ref={containerRef} className="relative pl-6 md:pl-10">
         <div
           aria-hidden
           className="absolute left-0 top-0 h-full w-px bg-[var(--color-border)]"
