@@ -9,6 +9,20 @@ type Node = {
   vy: number;
 };
 
+type Pulse = {
+  a: number;
+  b: number;
+  t: number;
+  speed: number;
+  hue: "cyan" | "violet" | "pink";
+};
+
+const HUES: Record<Pulse["hue"], string> = {
+  cyan: "rgba(125, 211, 252, 1)",
+  violet: "rgba(167, 139, 250, 1)",
+  pink: "rgba(240, 171, 252, 1)",
+};
+
 export function NeuralBackground({
   density = 0.00012,
   maxDistance = 140,
@@ -35,8 +49,10 @@ export function NeuralBackground({
     let height = 0;
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
     let nodes: Node[] = [];
+    let pulses: Pulse[] = [];
     let raf = 0;
     let running = true;
+    let lastSpawn = 0;
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
@@ -54,9 +70,32 @@ export function NeuralBackground({
         vx: (Math.random() - 0.5) * 0.18,
         vy: (Math.random() - 0.5) * 0.18,
       }));
+      pulses = [];
     };
 
-    const step = () => {
+    const spawnPulse = () => {
+      if (nodes.length < 2) return;
+      for (let attempts = 0; attempts < 8; attempts++) {
+        const a = Math.floor(Math.random() * nodes.length);
+        const b = Math.floor(Math.random() * nodes.length);
+        if (a === b) continue;
+        const dx = nodes[a].x - nodes[b].x;
+        const dy = nodes[a].y - nodes[b].y;
+        if (Math.hypot(dx, dy) < maxDistance) {
+          const pick = Math.random();
+          pulses.push({
+            a,
+            b,
+            t: 0,
+            speed: 0.008 + Math.random() * 0.008,
+            hue: pick < 0.5 ? "cyan" : pick < 0.8 ? "violet" : "pink",
+          });
+          return;
+        }
+      }
+    };
+
+    const step = (now: number) => {
       if (!running) return;
       ctx.clearRect(0, 0, width, height);
 
@@ -75,7 +114,7 @@ export function NeuralBackground({
           const dy = a.y - b.y;
           const dist = Math.hypot(dx, dy);
           if (dist < maxDistance) {
-            const alpha = (1 - dist / maxDistance) * 0.28;
+            const alpha = (1 - dist / maxDistance) * 0.26;
             ctx.strokeStyle = `rgba(125, 211, 252, ${alpha})`;
             ctx.lineWidth = 0.6;
             ctx.beginPath();
@@ -93,6 +132,35 @@ export function NeuralBackground({
         ctx.fill();
       }
 
+      if (now - lastSpawn > 280 && pulses.length < 14) {
+        spawnPulse();
+        lastSpawn = now;
+      }
+
+      for (let i = pulses.length - 1; i >= 0; i--) {
+        const p = pulses[i];
+        p.t += p.speed;
+        if (p.t >= 1 || !nodes[p.a] || !nodes[p.b]) {
+          pulses.splice(i, 1);
+          continue;
+        }
+        const a = nodes[p.a];
+        const b = nodes[p.b];
+        const x = a.x + (b.x - a.x) * p.t;
+        const y = a.y + (b.y - a.y) * p.t;
+
+        const base = HUES[p.hue];
+        ctx.fillStyle = base.replace(", 1)", ", 0.2)");
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = base;
+        ctx.beginPath();
+        ctx.arc(x, y, 1.6, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
       raf = requestAnimationFrame(step);
     };
 
@@ -100,7 +168,7 @@ export function NeuralBackground({
     if (!prefersReduced) {
       raf = requestAnimationFrame(step);
     } else {
-      step();
+      step(performance.now());
     }
 
     const onResize = () => resize();

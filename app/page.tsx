@@ -9,6 +9,8 @@ import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { CommandPalette } from "@/components/CommandPalette";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { SideRail } from "@/components/SideRail";
+import { SectionDivider } from "@/components/SectionDivider";
 
 export default function Home() {
   return (
@@ -16,13 +18,20 @@ export default function Home() {
       <ScrollProgress />
       <Navbar />
       <CommandPalette />
+      <SideRail />
       <main>
         <Hero />
+        <SectionDivider chapter="01" label="Journey" />
         <About />
+        <SectionDivider chapter="02" label="Work" />
         <Experience />
+        <SectionDivider chapter="03" label="Projects" />
         <Projects />
+        <SectionDivider chapter="04" label="Skills" />
         <Skills />
+        <SectionDivider chapter="05" label="Ask" />
         <AskPrompt />
+        <SectionDivider chapter="06" label="Contact" />
         <Contact />
       </main>
       <Footer />

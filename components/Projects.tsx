@@ -5,6 +5,7 @@ import { ArrowUpRight, Code2, FileText } from "lucide-react";
 import { Section } from "./Section";
 import { SectionHeading } from "./SectionHeading";
 import { Spotlight } from "./Spotlight";
+import { Tilt } from "./Tilt";
 import { siteConfig, type ProjectItem } from "@/config/siteConfig";
 
 export function Projects() {
@@ -58,6 +59,7 @@ function ProjectCard({
         <div className="absolute left-1/2 top-1/2 aspect-square w-[150%] -translate-x-1/2 -translate-y-1/2 bg-[conic-gradient(from_0deg,transparent_0deg,var(--color-accent-strong)_30deg,var(--color-accent-violet)_80deg,var(--color-accent-pink)_130deg,transparent_180deg,transparent_360deg)] opacity-70 motion-safe:animate-[spin-slow_9s_linear_infinite]" />
       </div>
     ) : null}
+    <Tilt className="relative h-full" max={5}>
     <Spotlight className="relative h-full rounded-xl">
     <article
       className="relative flex h-full flex-col overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-border-strong)] hover:shadow-[0_30px_60px_-30px_rgba(167,139,250,0.3)]"
@@ -150,6 +152,7 @@ function ProjectCard({
       ) : null}
     </article>
     </Spotlight>
+    </Tilt>
     </motion.div>
   );
 }

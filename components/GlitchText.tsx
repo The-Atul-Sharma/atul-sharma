@@ -19,26 +19,29 @@ export function GlitchText({
   durationMs?: number;
   tickMs?: number;
 }) {
-  const [display, setDisplay] = useState(() =>
-    text
-      .split("")
-      .map((c) => (c === " " ? " " : randomGlyph()))
-      .join(""),
-  );
+  const [display, setDisplay] = useState(text);
 
   useEffect(() => {
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
+    if (prefersReduced) {
+      setDisplay(text);
+      return;
+    }
+
+    setDisplay(
+      text
+        .split("")
+        .map((c) => (c === " " ? " " : randomGlyph()))
+        .join(""),
+    );
+
     const start = performance.now();
     let timer: ReturnType<typeof setTimeout> | null = null;
 
     const tick = () => {
-      if (prefersReduced) {
-        setDisplay(text);
-        return;
-      }
       const elapsed = performance.now() - start;
       const progress = Math.min(elapsed / durationMs, 1);
       const settled = Math.floor(text.length * progress);
@@ -61,7 +64,7 @@ export function GlitchText({
       }
     };
 
-    timer = setTimeout(tick, prefersReduced ? 0 : tickMs);
+    timer = setTimeout(tick, tickMs);
     return () => {
       if (timer) clearTimeout(timer);
     };

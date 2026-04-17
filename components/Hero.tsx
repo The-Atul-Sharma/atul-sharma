@@ -1,11 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion, type Variants } from "motion/react";
 import { ArrowDownRight, ArrowUpRight, Download, Sparkles } from "lucide-react";
 import { siteConfig } from "@/config/siteConfig";
 import { RotatingTitle } from "./RotatingTitle";
 import { NeuralBackground } from "./NeuralBackground";
 import { GlitchText } from "./GlitchText";
+import { Waveform } from "./Waveform";
 import { openCommandPalette } from "./CommandPalette";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -42,8 +44,6 @@ export function Hero() {
       />
 
       <div className="relative mx-auto w-full max-w-5xl px-6">
-        <HudCorners />
-
         <motion.div
           variants={container}
           initial="hidden"
@@ -100,9 +100,6 @@ export function Hero() {
               text={siteConfig.name}
               className="iridescent-text inline-block"
             />
-            <span className="bg-gradient-to-br from-[var(--color-accent-pink)] to-[var(--color-accent-violet)] bg-clip-text text-transparent">
-              .
-            </span>
           </motion.h1>
 
           <motion.p
@@ -114,9 +111,6 @@ export function Hero() {
               items={siteConfig.roles}
               className="text-[var(--color-fg)]"
             />
-            <span className="text-[var(--color-fg-subtle)]">
-              · {siteConfig.location}
-            </span>
           </motion.p>
 
           <motion.p
@@ -196,26 +190,27 @@ function Aurora() {
   );
 }
 
-function HudCorners() {
-  const corner =
-    "pointer-events-none absolute h-5 w-5 border-[var(--color-accent)]/60";
-  return (
-    <div aria-hidden className="absolute inset-0 -mx-2 md:-mx-4">
-      <span className={`${corner} left-0 top-0 border-l border-t`} />
-      <span className={`${corner} right-0 top-0 border-r border-t`} />
-      <span className={`${corner} bottom-0 left-0 border-b border-l`} />
-      <span className={`${corner} bottom-0 right-0 border-b border-r`} />
-    </div>
-  );
-}
-
 function SystemReadout() {
+  const loc = siteConfig.location
+    .split(",")
+    .map((s) => s.trim())
+    .join(" · ")
+    .toLowerCase();
+
   const rows = [
-    { key: "sys", value: "online", color: "emerald" as const },
-    { key: "lat.p95", value: "<1s", color: "accent" as const },
+    { key: "status", value: "open to work", color: "emerald" as const },
+    { key: "loc", value: loc, color: "accent" as const },
+    { key: "focus", value: "ai · llm · web", color: "muted" as const },
     { key: "stack", value: "openai · anthropic · langgraph", color: "muted" as const },
-    { key: "uptime", value: "99.98%", color: "muted" as const },
   ];
+
+  const [stamp, setStamp] = useState<string | null>(null);
+  useEffect(() => {
+    const d = new Date();
+    setStamp(
+      `${d.getUTCFullYear()}.${String(d.getUTCMonth() + 1).padStart(2, "0")}`,
+    );
+  }, []);
 
   return (
     <motion.div
@@ -229,8 +224,11 @@ function SystemReadout() {
           <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)] shadow-[0_0_8px_var(--color-accent)]" />
           system readout
         </span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-fg-subtle)]">
-          {new Date().getUTCFullYear()}.{String(new Date().getUTCMonth() + 1).padStart(2, "0")} · utc
+        <span className="flex items-center gap-3">
+          <Waveform className="h-3 w-14" />
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-fg-subtle)]">
+            {stamp ? `${stamp} · utc` : "—— · utc"}
+          </span>
         </span>
       </div>
 
