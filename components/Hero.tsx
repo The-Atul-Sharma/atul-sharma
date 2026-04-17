@@ -1,8 +1,11 @@
 "use client";
 
 import { motion, type Variants } from "motion/react";
-import { ArrowDownRight, ArrowUpRight, Download } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Download, Sparkles } from "lucide-react";
 import { siteConfig } from "@/config/siteConfig";
+import { RotatingTitle } from "./RotatingTitle";
+import { Stats } from "./Stats";
+import { openCommandPalette } from "./CommandPalette";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -40,15 +43,37 @@ export function Hero() {
         >
           <motion.div
             variants={item}
-            className="flex items-center gap-2 font-mono text-xs text-[var(--color-fg-subtle)]"
+            className="flex flex-wrap items-center gap-2 font-mono text-xs text-[var(--color-fg-subtle)]"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 py-1">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+              </span>
+              <span className="uppercase tracking-[0.2em] text-[var(--color-fg-muted)]">
+                {siteConfig.availability}
+              </span>
             </span>
-            <span className="uppercase tracking-[0.2em]">
-              {siteConfig.availability}
-            </span>
+
+            <button
+              type="button"
+              onClick={openCommandPalette}
+              className="group inline-flex items-center gap-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 py-1 text-[var(--color-fg-muted)] transition-colors hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)]"
+            >
+              <Sparkles
+                size={11}
+                className="text-[var(--color-accent)] transition-transform group-hover:rotate-12"
+              />
+              <span className="uppercase tracking-[0.2em]">Ask me anything</span>
+              <span className="ml-1 inline-flex items-center gap-0.5 text-[10px] text-[var(--color-fg-subtle)]">
+                <kbd className="rounded border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-1">
+                  ⌘
+                </kbd>
+                <kbd className="rounded border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-1">
+                  K
+                </kbd>
+              </span>
+            </button>
           </motion.div>
 
           <motion.p
@@ -67,10 +92,13 @@ export function Hero() {
 
           <motion.p
             variants={item}
-            className="mt-5 font-mono text-sm text-[var(--color-fg-muted)]"
+            className="mt-5 flex flex-wrap items-center gap-x-2 font-mono text-sm text-[var(--color-fg-muted)]"
           >
-            <span className="text-[var(--color-accent)]">&gt;</span>{" "}
-            {siteConfig.title}{" "}
+            <span className="text-[var(--color-accent)]">&gt;</span>
+            <RotatingTitle
+              items={siteConfig.roles}
+              className="text-[var(--color-fg)]"
+            />
             <span className="text-[var(--color-fg-subtle)]">
               · {siteConfig.location}
             </span>
@@ -116,6 +144,8 @@ export function Hero() {
               Résumé
             </a>
           </motion.div>
+
+          <Stats />
         </motion.div>
       </div>
     </section>

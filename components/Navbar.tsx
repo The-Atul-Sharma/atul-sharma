@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X } from "lucide-react";
+import { Menu, Search, X } from "lucide-react";
 import { siteConfig } from "@/config/siteConfig";
+import { openCommandPalette } from "./CommandPalette";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -54,12 +55,23 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
-          <a
-            href={siteConfig.resumeUrl}
-            className="hidden rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3.5 py-1.5 text-sm font-medium text-[var(--color-fg)] transition-colors hover:border-[var(--color-border-strong)] sm:inline-flex"
+          <button
+            type="button"
+            onClick={openCommandPalette}
+            className="hidden items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1.5 text-sm text-[var(--color-fg-muted)] transition-colors hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg)] sm:inline-flex"
+            aria-label="Open command palette"
           >
-            Résumé
-          </a>
+            <Search size={13} />
+            <span>Search</span>
+            <span className="ml-1 inline-flex items-center gap-0.5 font-mono text-[10px] text-[var(--color-fg-subtle)]">
+              <kbd className="rounded border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-1 py-0.5">
+                ⌘
+              </kbd>
+              <kbd className="rounded border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-1 py-0.5">
+                K
+              </kbd>
+            </span>
+          </button>
           <a
             href="#contact"
             className="hidden rounded-full bg-[var(--color-fg)] px-3.5 py-1.5 text-sm font-medium text-[var(--color-bg)] transition-opacity hover:opacity-90 sm:inline-flex"

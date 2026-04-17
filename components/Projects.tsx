@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { ArrowUpRight, Code2, FileText } from "lucide-react";
 import { Section } from "./Section";
 import { SectionHeading } from "./SectionHeading";
+import { Spotlight } from "./Spotlight";
 import { siteConfig, type ProjectItem } from "@/config/siteConfig";
 
 export function Projects() {
@@ -38,7 +39,7 @@ function ProjectCard({
     null;
 
   return (
-    <motion.article
+    <motion.div
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
@@ -47,12 +48,11 @@ function ProjectCard({
         delay: index * 0.06,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="group relative flex flex-col overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-colors hover:border-[var(--color-border-strong)]"
     >
-      <div aria-hidden className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100">
-        <div className="absolute -inset-px rounded-xl bg-gradient-to-b from-[color:color-mix(in_oklab,var(--color-accent)_14%,transparent)] to-transparent" />
-      </div>
-
+    <Spotlight className="h-full rounded-xl">
+    <article
+      className="relative flex h-full flex-col overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 transition-colors hover:border-[var(--color-border-strong)]"
+    >
       <div className="relative flex items-center justify-between">
         <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-fg-subtle)]">
           {project.year}
@@ -134,7 +134,9 @@ function ProjectCard({
           ) : null}
         </div>
       ) : null}
-    </motion.article>
+    </article>
+    </Spotlight>
+    </motion.div>
   );
 }
 
