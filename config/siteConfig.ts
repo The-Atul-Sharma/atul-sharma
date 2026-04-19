@@ -121,7 +121,7 @@ export const siteConfig: SiteConfig = {
     {
       year: "2025 — Present",
       role: "Senior Software Engineer",
-      company: "Yallo.co : Alshaya Group",
+      company: "Alshaya Group (Via Yallo)",
       location: "Remote (Bengaluru, India)",
       description:
         "Building scalable frontend architecture and enterprise retail systems for Alshaya Group, focusing on performance, multi-brand platforms, and micro-frontend architecture.",
