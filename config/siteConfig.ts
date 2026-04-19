@@ -61,6 +61,8 @@ export type SiteConfig = {
   email: string;
   url: string;
   locale: string;
+  googleAnalyticsId?: string;
+  googleSiteVerification?: string;
   bio: {
     short: string;
     long: string;
@@ -100,6 +102,8 @@ export const siteConfig: SiteConfig = {
 
   url: "https://atul-sharma.vercel.app/",
   locale: "en_US",
+  googleAnalyticsId: "G-K2DFTRSK3K",
+  googleSiteVerification: "VEucwWtII3gELwDw1DSm1FZYLFynBgl0FwTQLYa4SrQ",
 
   bio: {
     short:

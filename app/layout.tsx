@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { siteConfig } from "@/config/siteConfig";
 import { JsonLd } from "@/components/JsonLd";
@@ -54,6 +55,11 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  ...(siteConfig.googleSiteVerification
+    ? {
+        verification: { google: siteConfig.googleSiteVerification },
+      }
+    : {}),
   category: "technology",
 };
 
@@ -76,6 +82,17 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-dvh antialiased">
+        {siteConfig.googleAnalyticsId ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.googleAnalyticsId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${siteConfig.googleAnalyticsId}');`}
+            </Script>
+          </>
+        ) : null}
         <JsonLd />
         {children}
       </body>
