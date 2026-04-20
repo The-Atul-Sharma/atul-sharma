@@ -58,6 +58,10 @@ export type SiteConfig = {
   tagline: string;
   location: string;
   availability: string;
+  readout: {
+    focus: string;
+    stack: string;
+  };
   email: string;
   url: string;
   locale: string;
@@ -97,6 +101,11 @@ export const siteConfig: SiteConfig = {
 
   location: "India / Remote",
   availability: "Open to senior roles or Projects",
+
+  readout: {
+    focus: "ai · frontend · web",
+    stack: "react · nextjs",
+  },
 
   email: "theatsharma@gmail.com",
 

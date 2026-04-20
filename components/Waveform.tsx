@@ -20,20 +20,28 @@ export function Waveform({
 
     if (prefersReduced) return;
 
-    setHeights(Array.from({ length: bars }, () => 30 + Math.random() * 60));
+    let cancelled = false;
+    let id: ReturnType<typeof setInterval> | undefined;
 
-    const id = setInterval(() => {
-      setHeights((prev) =>
-        prev.map((h) => {
-          const drift = (Math.random() - 0.5) * 55;
-          const next = h + drift;
-          return Math.max(18, Math.min(100, next));
-        }),
-      );
-    }, 180);
+    queueMicrotask(() => {
+      if (cancelled) return;
+      setHeights(Array.from({ length: bars }, () => 30 + Math.random() * 60));
+      id = setInterval(() => {
+        setHeights((prev) =>
+          prev.map((h) => {
+            const drift = (Math.random() - 0.5) * 55;
+            const next = h + drift;
+            return Math.max(18, Math.min(100, next));
+          }),
+        );
+      }, 180);
+    });
 
-    return () => clearInterval(id);
-  }, []);
+    return () => {
+      cancelled = true;
+      if (id !== undefined) clearInterval(id);
+    };
+  }, [bars]);
 
   return (
     <span

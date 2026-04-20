@@ -6,7 +6,6 @@ import {
   ArrowRight,
   Command,
   CornerDownLeft,
-  FileText,
   Mail,
   Search,
   Sparkles,

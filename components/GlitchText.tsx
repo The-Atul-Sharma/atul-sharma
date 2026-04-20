@@ -26,46 +26,56 @@ export function GlitchText({
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    if (prefersReduced) {
-      setDisplay(text);
-      return;
-    }
-
-    setDisplay(
-      text
-        .split("")
-        .map((c) => (c === " " ? " " : randomGlyph()))
-        .join(""),
-    );
-
-    const start = performance.now();
+    let cancelled = false;
     let timer: ReturnType<typeof setTimeout> | null = null;
 
-    const tick = () => {
-      const elapsed = performance.now() - start;
-      const progress = Math.min(elapsed / durationMs, 1);
-      const settled = Math.floor(text.length * progress);
-
-      const next = text
-        .split("")
-        .map((c, i) => {
-          if (c === " ") return " ";
-          if (i < settled) return c;
-          return randomGlyph();
-        })
-        .join("");
-
-      setDisplay(next);
-
-      if (progress < 1) {
-        timer = setTimeout(tick, tickMs);
-      } else {
+    const run = () => {
+      if (cancelled) return;
+      if (prefersReduced) {
         setDisplay(text);
+        return;
       }
+
+      setDisplay(
+        text
+          .split("")
+          .map((c) => (c === " " ? " " : randomGlyph()))
+          .join(""),
+      );
+
+      const start = performance.now();
+
+      const tick = () => {
+        if (cancelled) return;
+        const elapsed = performance.now() - start;
+        const progress = Math.min(elapsed / durationMs, 1);
+        const settled = Math.floor(text.length * progress);
+
+        const next = text
+          .split("")
+          .map((c, i) => {
+            if (c === " ") return " ";
+            if (i < settled) return c;
+            return randomGlyph();
+          })
+          .join("");
+
+        setDisplay(next);
+
+        if (progress < 1) {
+          timer = setTimeout(tick, tickMs);
+        } else {
+          setDisplay(text);
+        }
+      };
+
+      timer = setTimeout(tick, tickMs);
     };
 
-    timer = setTimeout(tick, tickMs);
+    queueMicrotask(run);
+
     return () => {
+      cancelled = true;
       if (timer) clearTimeout(timer);
     };
   }, [text, durationMs, tickMs]);

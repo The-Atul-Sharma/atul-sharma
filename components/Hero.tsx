@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { motion, type Variants } from "motion/react";
-import { ArrowDownRight, ArrowUpRight, Download, Sparkles } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Sparkles } from "lucide-react";
 import { siteConfig } from "@/config/siteConfig";
 import { RotatingTitle } from "./RotatingTitle";
 import { NeuralBackground } from "./NeuralBackground";
@@ -194,21 +194,17 @@ function SystemReadout() {
   const rows = [
     { key: "status", value: "open to work", color: "emerald" as const },
     { key: "loc", value: loc, color: "accent" as const },
-    { key: "focus", value: "frontend · ai · web", color: "muted" as const },
+    { key: "focus", value: siteConfig.readout.focus, color: "muted" as const },
     {
       key: "stack",
-      value: "react · nextjs · micro-frontends",
+      value: siteConfig.readout.stack,
       color: "muted" as const,
     },
   ];
 
-  const [stamp, setStamp] = useState<string | null>(null);
-
-  useEffect(() => {
+  const stamp = useMemo(() => {
     const d = new Date();
-    setStamp(
-      `${d.getUTCFullYear()}.${String(d.getUTCMonth() + 1).padStart(2, "0")}`,
-    );
+    return `${d.getUTCFullYear()}.${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
   }, []);
 
   return (
@@ -226,7 +222,7 @@ function SystemReadout() {
         <span className="flex items-center gap-3">
           <Waveform className="h-3 w-14" />
           <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-fg-subtle)]">
-            {stamp ? `${stamp} · utc` : "—— · utc"}
+            {`${stamp} · utc`}
           </span>
         </span>
       </div>
