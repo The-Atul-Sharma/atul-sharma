@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ArrowUpRight, Code2, FileText } from "lucide-react";
+import { ArrowUpRight, Code2 } from "lucide-react";
 import { Section } from "./Section";
 import { SectionHeading } from "./SectionHeading";
 import { Spotlight } from "./Spotlight";
@@ -34,6 +34,8 @@ function ProjectCard({
   index: number;
 }) {
   const primaryHref =
+    project.links?.vscode ??
+    project.links?.npm ??
     project.links?.live ??
     project.links?.caseStudy ??
     project.links?.repo ??
@@ -131,6 +133,12 @@ function ProjectCard({
 
       {project.links ? (
         <div className="relative mt-5 flex gap-3 border-t border-[var(--color-border)] pt-4 text-sm">
+          {project.links.vscode ? (
+            <ExternalLink href={project.links.vscode} label="VS Code" />
+          ) : null}
+          {project.links.npm ? (
+            <ExternalLink href={project.links.npm} label="npm" />
+          ) : null}
           {project.links.live ? (
             <ExternalLink href={project.links.live} label="Live" />
           ) : null}
@@ -142,11 +150,7 @@ function ProjectCard({
             />
           ) : null}
           {project.links.caseStudy ? (
-            <ExternalLink
-              href={project.links.caseStudy}
-              label="Case study"
-              icon={<FileText size={13} />}
-            />
+            <ExternalLink href={project.links.caseStudy} label="Case study" />
           ) : null}
         </div>
       ) : null}

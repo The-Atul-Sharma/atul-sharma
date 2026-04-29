@@ -23,6 +23,8 @@ export type ProjectItem = {
     live?: string;
     repo?: string;
     caseStudy?: string;
+    npm?: string;
+    vscode?: string;
   };
   featured?: boolean;
 };
@@ -229,6 +231,30 @@ export const siteConfig: SiteConfig = {
   projects: [
     {
       year: "2026",
+      title: "gpilot",
+      description:
+        "AI-powered Git workflow automation CLI and VS Code extension for generating commits, creating pull requests, reviewing code, fixing issues, and writing specs in one flow.",
+      stack: [
+        "TypeScript",
+        "Node.js",
+        "VS Code Extension",
+        "React",
+        "Spec driven development",
+      ],
+      impact: [
+        "Unified commit, PR, review, spec generation, and fix workflows across CLI and extension",
+        "Added pluggable AI providers and Git platforms for flexible team adoption",
+        "Implemented secure key storage through OS keychain integration",
+      ],
+      links: {
+        repo: "https://github.com/The-Atul-Sharma/gpilot",
+        npm: "https://www.npmjs.com/package/gpilot",
+        vscode: "https://marketplace.visualstudio.com/items?itemName=atsharma.gpilot",
+      },
+      featured: true,
+    },
+    {
+      year: "2026",
       title: "Knowledgebase AI",
       description:
         "AI-powered chatbot platform that answers product questions using Retrieval-Augmented Generation (RAG). Users can upload content or scrape websites to create a custom knowledge base and embed a fully customizable chatbot on their site.",
@@ -268,19 +294,6 @@ export const siteConfig: SiteConfig = {
       ],
       links: {},
       featured: false,
-    },
-    {
-      year: "2021 - 2025",
-      title: "Global Performing Arts Platform",
-      description:
-        "Subscription-based platform for the performing arts industry with global reach, payments, and analytics systems.",
-      stack: ["React", "TypeScript", "Stripe", "Chargebee", "VWO", "Lokalize"],
-      impact: [
-        "Built secure paywall using FingerprintJS",
-        "Integrated Stripe and Chargebee for subscriptions",
-        "Improved Core Web Vitals and SEO performance",
-        "Built analytics pipelines using Google Analytics and Tag Manager",
-      ],
     },
   ],
 

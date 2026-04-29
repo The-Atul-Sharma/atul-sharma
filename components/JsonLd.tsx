@@ -40,7 +40,13 @@ export function JsonLd() {
       dateCreated: p.year,
       keywords: p.stack.join(", "),
       author: { "@type": "Person", name: siteConfig.name },
-      url: p.links?.live ?? p.links?.caseStudy ?? p.links?.repo ?? siteConfig.url,
+      url:
+        p.links?.vscode ??
+        p.links?.npm ??
+        p.links?.live ??
+        p.links?.caseStudy ??
+        p.links?.repo ??
+        siteConfig.url,
     })),
   };
 
