@@ -231,6 +231,29 @@ export const siteConfig: SiteConfig = {
   projects: [
     {
       year: "2026",
+      title: "InterviewLane",
+      description:
+        "A curated frontend interview prep platform for engineers featuring 700+ questions, structured roadmaps, and study plans.",
+      stack: [
+        "NextJS",
+        "TypeScript",
+        "Tailwind CSS",
+        "Supabase",
+        "Zustand",
+      ],
+      impact: [
+        "Curated 700+ structured questions across 18 categories for comprehensive frontend interview preparation",
+        "Implemented robust authentication and bookmarking systems to track user progress",
+        "Developed structured study plans, daily challenges, and random rounds to simulate real interview loops",
+      ],
+      links: {
+        live: "https://interviewlane.com/",
+        repo: "https://github.com/The-Atul-Sharma/InterviewLane",
+      },
+      featured: true,
+    },
+    {
+      year: "2026",
       title: "gpilot",
       description:
         "AI-powered Git workflow automation CLI and VS Code extension for generating commits, creating pull requests, reviewing code, fixing issues, and writing specs in one flow.",
@@ -251,7 +274,6 @@ export const siteConfig: SiteConfig = {
         npm: "https://www.npmjs.com/package/gpilot",
         vscode: "https://marketplace.visualstudio.com/items?itemName=atsharma.gpilot",
       },
-      featured: true,
     },
     {
       year: "2026",
@@ -279,21 +301,6 @@ export const siteConfig: SiteConfig = {
         live: "https://knowledge-base-ai-alpha.vercel.app/",
         repo: "https://github.com/The-Atul-Sharma/KnowledgeBase-ai",
       },
-      featured: true,
-    },
-    {
-      year: "2025",
-      title: "Enterprise Retail Platform",
-      description:
-        "Built enterprise retail systems handling demand forecasting, inventory planning, and store replenishment across distribution centers and global store networks.",
-      stack: ["React", "TypeScript", "Micro-frontends", "MUI", "SCSS"],
-      impact: [
-        "Architected micro-frontend system for scalable deployments",
-        "Built reusable UI library and multi-brand theming system",
-        "Improved performance across high-traffic retail workflows",
-      ],
-      links: {},
-      featured: false,
     },
   ],
 
